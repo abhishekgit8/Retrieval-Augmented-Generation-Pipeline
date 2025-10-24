@@ -1,0 +1,17 @@
+# LangChain core
+langchain==0.1.12
+langchain-community==0.0.29
+
+# Vector DB
+chromadb==0.5.0
+
+# Embeddings
+sentence-transformers==2.2.2
+torch>=1.11.0
+
+# LLM & utils
+openai
+python-dotenv
+numpy
+tqdm
+pypdf

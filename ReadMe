@@ -1,0 +1,22 @@
+#Instructions
+
+1. Activate your virtualenv:
+
+source venv/bin/activate
+
+
+2. Install dependencies (this will download torch):
+
+pip install -r requirements.txt
+
+
+3. Run the pipeline:
+
+python main.py
+
+
+4. Enter path like ./sample.txt
+
+Type your query
+
+Watch print statements for each step

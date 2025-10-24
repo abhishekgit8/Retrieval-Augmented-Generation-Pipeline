@@ -1,0 +1,20 @@
+RAG (Retrieval-Augmented Generation) is a powerful approach in modern NLP that combines a vector database with a large language model. 
+It allows the LLM to access external knowledge stored in documents, enabling more accurate and informed answers.
+
+The pipeline generally involves several key steps:
+1. Data Loading: Text or PDF documents are loaded into the system.
+2. Text Splitting: Documents are split into smaller chunks for easier embedding.
+3. Embedding Generation: Each chunk is converted into a numeric vector using an embedding model.
+4. Vector Storage: Embeddings are stored in a vector database like Chroma for efficient similarity search.
+5. Query Processing: User queries are converted into embeddings and used to retrieve similar document chunks.
+6. LLM Generation: The retrieved context is fed into a large language model along with the user’s question to generate an answer.
+
+Benefits of RAG:
+- Provides LLMs access to up-to-date or domain-specific knowledge.
+- Reduces hallucinations since answers are grounded in actual documents.
+- Can handle large corpora without requiring the entire text to fit in model memory.
+
+Use cases:
+- Answering questions on company manuals or knowledge bases.
+- Customer support automation using product documentation.
+- Academic research assistant that summarizes papers and books.
