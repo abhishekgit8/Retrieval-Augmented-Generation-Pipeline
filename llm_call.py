@@ -1,15 +1,21 @@
-# 5. Call LLM with context and prompt to get answer
+# llm_call.py — using Google Gemini (Free)
 import os
-import openai
+import google.generativeai as genai
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-if not openai.api_key:
-    raise RuntimeError("OPENAI_API_KEY not set in environment")
+
+api_key = os.getenv("GEMINI_API_KEY")
+if not api_key:
+    raise RuntimeError("GEMINI_API_KEY not set in environment")
+
+# Configure Gemini client
+genai.configure(api_key=api_key)
 
 def ask_gemini(context, query):
-    print("🔍 Querying LLM (OpenAI) ...")
+    print("🔍 Querying LLM (Gemini 1.5 Flash)...")
+
     prompt = f"""You are a helpful assistant.
 Use the following context to answer the user's question accurately.
 
@@ -21,15 +27,15 @@ Question:
 
 Answer:"""
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.0,
-        max_tokens=512,
-    )
+    # Initialize Gemini model
+    model = genai.GenerativeModel("gemini-2.5-flash")
 
-    answer = response.choices[0].message.get("content", "").strip()
-    print("✅ Received response from LLM.")
+
+    # Generate response
+    response = model.generate_content(prompt)
+
+    # Gemini returns `.text` directly (not .choices like OpenAI)
+    answer = response.text.strip() if response.text else "No response from Gemini."
+
+    print("✅ Received response from Gemini.")
     return answer
-
-
